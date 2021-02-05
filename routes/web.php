@@ -96,10 +96,6 @@ Route::get('/test', function(){
 // 	dd($id);
 // });
 
-Route::post('/login', function(Request $request){
-	dd($request->get('email'));
-}); 
-
 //hello
 
 //hi everyone

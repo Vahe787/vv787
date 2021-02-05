@@ -1,26 +1,35 @@
-@extends('app.master');
+@extends('app.master')
+
+@section('css')
+	<link rel="stylesheet" href="/css/main.css">
+@endsection
+
+@include('sideber')
 
 @section('content')
+	
+	@include('messages')
+	
 	<form action="/registr" method="post">
 		@csrf
-		<div>
-			<label for="">name</label>
-			<input type="text" name="name">
-		</div>
-		<div>
-			<label for="">email</label>
-			<input type="text" name="email">
-		</div>
-		<div>
-			<label for="">age</label>
-			<input type="number" name="age">
-		</div>
-		<div>
-			<label for="">password</label>
-			<input type="password" name="password">
-		</div>
-		<div>
-			<input type="submit" value="Submit form">
-		</div>
+		<section class="sec">
+			<div class="div2">
+				<div>
+					<input type="text" name="name" placeholder="Your Name">
+				</div>
+				<div>
+					<input type="text" name="email" placeholder="Your Email">
+				</div>
+				<div>
+					<input type="text" name="age" placeholder="Your Age">
+				</div>
+				<div>
+					<input type="password" name="password" placeholder="Your Password">
+				</div>
+				<div>
+					<input type="submit" value="Login" class="sub">
+				</div>
+			</div>
+		</section>
 	</form>
 @endsection

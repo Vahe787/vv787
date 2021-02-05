@@ -6,7 +6,10 @@
 
 @include('sideber')
 
+
 @section('content')
+
+	@include('messages')
 
 	<h1>Login</h1>
 

@@ -1,0 +1,103 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	width: 100%;
+	background: url(https://hbr.org/resources/images/article_assets/2020/01/Jan20_09_540050956_200172335-001.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.div1{
+	background: #2ecc71;
+	top: 0;
+	padding: 25px;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+
+.div1 ul{
+	display: flex;
+	margin-left: 20%;
+}
+
+.div1 li{
+	margin-right: 100px;
+	list-style: none;
+}
+
+.div1 li a{
+	display: inline-block;
+	text-decoration: none;
+	font-size: 30px;
+	color: white;
+	transition: 0.7s;
+}
+
+.div1 li a:hover{
+	color: #1498db;
+}
+
+.sec{
+	width: 500px;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	left: 20%;
+	transform: translate(-50%, -50%);
+	background: none;
+	text-align: center;
+}
+
+.div2 input[type = "text"],.div2 input[type = password]{
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	font-size: 20px;
+	text-align: center;
+	border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: 300px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+
+.div2 input[type = "text"]:focus,.div2 input[type = password]:focus{
+	width: 400px;
+	border-color: #2ecc71;
+}
+
+.div2 input[type = "submit"]{
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #2ecc71;
+	padding: 14px 40px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.4s;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.div2 input[type = "submit"]:hover{
+	background: #2ecc71;
+}
+
+.div2 input{
+	transition: 0.5s;
+}
+
+.div2 input:hover{
+	background: #2ecc71;
+}
