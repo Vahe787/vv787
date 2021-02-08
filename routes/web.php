@@ -36,13 +36,19 @@ Route::get('/', function () {
 Route::get('/', [UserController::class, 'index']);
 
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 
-Route::post('/login', [UserController::class, 'signIn']);
+Route::post('/login', [UserController::class, 'signIn'])->name('post-login');
 
-Route::get('/signup', [UserController::class, 'signUp']);
+Route::get('/signup', [UserController::class, 'signUp'])->name('signup');
 
 Route::post('/registr', [UserController::class, 'registr']);
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('checkUserAuth');
+
+Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('checkUserAuth');
+
+
 
 use App\Models\User;
 Route::get('/test', function(){

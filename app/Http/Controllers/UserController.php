@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function login(){
-    	return view('login');
+    	if(Auth::check()){
+            return redirect()->route('profile');
+        } else {
+            return view('login');
+        }
     }
 
     public function index(){
@@ -36,9 +40,9 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt($validated)){
-            dd('login');
+            return redirect()->route('profile');
         }else{
-            return redirect('/login')->with('error', 'Invalid email or password');
+            return redirect()->route('/login')->with('error', 'Invalid email or password');
         }
     }
 
@@ -54,9 +58,20 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $validated['password'] = ($validated['password']);
+        $validated['password'] = bcrypt($validated['password']);
         $user = User::create($validated);
 
-        return redirect('/login');
+        return redirect()->route('login');
+    }
+
+    public function profile(){
+        return view('profile', [
+            'user' => Auth::user()
+        ]);
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

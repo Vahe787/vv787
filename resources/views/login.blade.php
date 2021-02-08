@@ -13,7 +13,7 @@
 
 	<h1>Login</h1>
 
-	<form action="/login" method="post">
+	<form action="{{ route('post-login') }}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}" />
 		<div>
 			<input type="text" name="email">
