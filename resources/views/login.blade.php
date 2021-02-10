@@ -1,3 +1,7 @@
+@section('css')
+	<link rel="stylesheet" href="/css/main.css">
+@endsection
+
 @extends('app.master')
 
 @section('title')

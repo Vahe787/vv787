@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
+use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserSignInRequest;
 
 class UserController extends Controller
 {
@@ -33,11 +36,8 @@ class UserController extends Controller
     	]);
     }
 
-    public function signIn(Request $request){
-    	$validated = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    public function signIn(UserSignInRequest $request){
+    	$validated = $request->validated();
 
         if(Auth::attempt($validated)){
             return redirect()->route('profile');
@@ -50,13 +50,8 @@ class UserController extends Controller
         return view('signup');
     }
 
-    public function registr(Request $request){
-        $validated = $request->validate([
-            'name' => 'required|string|max:16',
-            'email' => 'required|unique:users,email',
-            'age' => 'required|numeric|max:100',
-            'password' => 'required|min:6',
-        ]);
+    public function registr(UserRegisterRequest $request){
+        $validated = $request->validated();
 
         $validated['password'] = bcrypt($validated['password']);
         $user = User::create($validated);
@@ -65,8 +60,14 @@ class UserController extends Controller
     }
 
     public function profile(){
+
+        $posts = Post::where('user_id', Auth::user()->id)
+        ->with('user')
+        ->get();
+
         return view('profile', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'posts' => $posts
         ]);
     }
 

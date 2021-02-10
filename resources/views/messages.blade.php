@@ -1,3 +1,8 @@
+
+@section('css')
+	<link rel="stylesheet" href="/css/main.css">
+@endsection
+
 @if($errors->any())
 	<div class="alert alert-danger">
 		<ul>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +45,16 @@ Route::get('/signup', [UserController::class, 'signUp'])->name('signup');
 
 Route::post('/registr', [UserController::class, 'registr']);
 
-Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('checkUserAuth');
+Route::group(['middleware' => ['checkUserAuth']],function(){
+	Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('checkUserAuth');
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('checkUserAuth');
+
+Route::get('/posts', [PostController::class, 'create'])->name('post-create')->middleware('checkUserAuth');
+
+Route::post('/posts', [PostController::class, 'store'])->name('store-posts')->middleware('checkUserAuth');
+});
+
 
 
 

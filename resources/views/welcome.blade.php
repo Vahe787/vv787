@@ -8,8 +8,8 @@
 	<script type="/js/index.js"></script>
 @endsection
 
-@section('styles')
-	<script type="/css/main.css"></script>
+@section('css')
+	<link rel="stylesheet" href="/css/main.css">
 @endsection
 
 @include('sideber')
