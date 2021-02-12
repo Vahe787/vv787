@@ -23,7 +23,7 @@
 			<input type="text" name="email">
 		</div>
 		<div>
-			<input type="text" name="password">
+			<input type="password" name="password">
 		</div>
 		<div>
 			<input type="submit" name="Save">
