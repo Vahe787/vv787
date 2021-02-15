@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::group(['middleware' => ['checkUserAuth']],function(){
 	Route::get('/posts', [PostController::class, 'create'])->name('post-create')->middleware('checkUserAuth');
 
 	Route::post('/posts', [PostController::class, 'store'])->name('store-posts')->middleware('checkUserAuth');
+
+	Route::get('me/profile-image', [UserController::class, 'getProfileImage'])->name('user.profile-image');
 });
 
 
