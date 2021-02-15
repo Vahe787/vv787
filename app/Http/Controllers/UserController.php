@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserSignInRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
@@ -87,25 +88,10 @@ class UserController extends Controller
             'password' => 'nullable|min:6',
             'image' => 'nullable|image|max:2048',
         ]);
-        $validated = array_filter($validated, function($value){
-            return !empty($value);
-        });
-        Auth::user()->update($validated);
 
-        if($request->hasFile('image')){
-
-            if(Auth::user()->profile_image){
-                $oldImagePath = Auth::user()->profile_image;
-
-                if(Storage::exists($oldImagePath)){
-                    Storage::delete($oldImagePath);
-                }
-            }
-
-            $imageName = Storage::put('images', $request->file('image'));
-            Auth::user()->profile_image = $imageName;
-            Auth::user()->save();
-        }
+        $userService = new userService(Auth::user());
+        $userService->update($validated);
+        
         return redirect()->route('profile');
     }
 
