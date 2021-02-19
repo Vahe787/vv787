@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Events\UserPasswordUpdateEvent;
+use App\Jobs\UserPasswordUpdate;
 
 class UserService{
 
@@ -23,8 +24,8 @@ class UserService{
         $this->user->update($validated);
 
         if(isset($validated['password'])){
-            $obj = new UserPasswordUpdateEvent($this->user);
-            event($obj);
+            event(new UserPasswordUpdateEvent($this->user));
+            // dispatch(new UserPasswordUpdate($this->user));
         }
 
         if(isset($validated['image'])){
