@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Events\UserPasswordUpdateEvent;
 
 class UserService{
 
@@ -20,6 +21,11 @@ class UserService{
         });
 
         $this->user->update($validated);
+
+        if(isset($validated['password'])){
+            $obj = new UserPasswordUpdateEvent($this->user);
+            event($obj);
+        }
 
         if(isset($validated['image'])){
             if($this->user->profile_image){
