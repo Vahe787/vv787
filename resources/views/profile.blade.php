@@ -29,6 +29,9 @@
                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg> Edit profile
                             </a>
+                            <form>
+                                
+                            </form>
                         </div>
                     </div>
                 </div>

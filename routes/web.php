@@ -66,6 +66,8 @@ Route::group(['middleware' => ['checkUserAuth']],function(){
 
 
 
+
+
 use App\Models\User;
 Route::get('/test', function(){
 	// $users = User::get();
@@ -108,8 +110,8 @@ Route::get('/test', function(){
 	// $user = User::find(4);
 	// dump($user);
 
-	$user = User::whereAge(21)->first();
-	dd($user);
+	// $user = User::whereAge(21)->first();
+	// dd($user);
 
 
 });
