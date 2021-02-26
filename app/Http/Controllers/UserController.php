@@ -119,9 +119,9 @@ class UserController extends Controller
     }
 
     public function apiLogin(Request $request){
-        $response = Http::asForm()->post('http://vahe.loc/oauth/token', [
+        $response = Http::asForm()->post(env('APP_URL').'/oauth/token', [
             'grant_type' => 'password',
-            'client_id' => 2,
+            'client_id' => env('PASSPORT_PASSWORD_ID'),
             'client_secret' => env('PASSPORT_PASSWORD_SECRET'),
             'username' => $request->email,
             'password' => $request->password,
